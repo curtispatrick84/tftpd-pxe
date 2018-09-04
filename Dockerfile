@@ -5,6 +5,12 @@ LABEL maintainer="Curtis Patrick <curtis.patrick84@gmail.com>"
 
 RUN apt-get update && apt-get install -y tftp-hpa
 
+RUN mkdir -p /app
+WORKDIR /app
+
+COPY . /app
+RUN npm install
+
 ENTRYPOINT ["in.tftpd"]
 
 EXPOSE 69/udp
