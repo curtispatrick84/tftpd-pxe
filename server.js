@@ -14,7 +14,7 @@ app.get('/test', (req, res) => {
 })
 
 app.put('/pxeconfig', ({ body: { mac, os }}, res) => {
-  if (host && mac) {
+  if (typeof os !== 'undefined' && typeof mac !== 'undefined') {
     parsedMacAddress = `01-${mac.replace(':', '-')}`
     // first, remove the old symlink
     fs.unlink(`${PXECFG}/${parsedMacAddress}`, err => {})
