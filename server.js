@@ -13,7 +13,7 @@ app.get('/test', (req, res) => {
   res.json({ oh: 'hai' })
 })
 
-app.put('/pxeconfig', ({ body: { mac, os }}, res) => {
+app.post('/pxeconfig', ({ body: { mac, os }}, res) => {
   if (typeof os !== 'undefined' && typeof mac !== 'undefined') {
     parsedMacAddress = `01-${mac.toLowerCase().replace(/:/g, '-')}`
     // first, remove the old symlink
