@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL maintainer="Curtis Patrick <curtis.patrick84@gmail.com>"
 
-RUN apt-get update && apt-get install -y tftp-hpa
+RUN apt-get update && apt-get install -y tftpd-hpa
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -14,4 +14,4 @@ RUN npm install
 EXPOSE 69/udp
 EXPOSE 8069/tcp
 
-CMD ["in.tftpd", "-L", "--secure", "/var/tftpboot", "&&", "npm", "start"]
+CMD ["/usr/sbin/in.tftpd", "-L", "--secure", "/var/tftpboot", "&&", "npm", "start"]
