@@ -11,9 +11,7 @@ WORKDIR /app
 COPY . /app
 RUN npm install
 
-ENTRYPOINT ["in.tftpd"]
-
 EXPOSE 69/udp
 EXPOSE 8069/tcp
 
-CMD ["-L", "--secure", "/var/tftpboot", "&&", "npm", "start"]
+CMD ["in.tftpd", "-L", "--secure", "/var/tftpboot", "&&", "npm", "start"]
