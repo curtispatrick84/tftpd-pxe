@@ -16,10 +16,11 @@ app.get('/test', (req, res) => {
 app.post('/pxeconfig', ({ body: { mac, os }}, res) => {
   if (typeof os !== 'undefined' && typeof mac !== 'undefined') {
     parsedMacAddress = `01-${mac.toLowerCase().replace(/:/g, '-')}`
-    // first, remove the old symlink
+    // first, remove the old file
     fs.unlink(`${PXECFG}/${parsedMacAddress}`, err => {})
-    // next, link the pxe file to the request OS recipe
-    fs.symlink(`${PXECFG}/${os}.cfg`, `${PXECFG}/${parsedMacAddress}`, err => {})
+
+    fs.createReadStream(`${PXECFG}/${os}.cfg`)
+      .pipe(fs.createWriteStream(`${PXECFG}/${parsedMacAddress}`))
 
     res.json({ status: 'success' })
     return
