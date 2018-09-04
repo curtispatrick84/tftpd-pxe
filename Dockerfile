@@ -14,4 +14,6 @@ RUN npm install
 EXPOSE 69/udp
 EXPOSE 8069/tcp
 
+RUN apt-get clean
+
 CMD [ "./run.sh" ]
