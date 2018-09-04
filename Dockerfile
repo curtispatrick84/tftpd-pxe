@@ -14,4 +14,4 @@ RUN npm install
 EXPOSE 69/udp
 EXPOSE 8069/tcp
 
-CMD ["/usr/sbin/in.tftpd", "-L", "--secure", "/var/tftpboot", "&&", "npm", "start"]
+CMD [ "./run.sh" ]
