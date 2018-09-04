@@ -19,7 +19,7 @@ app.post('/pxeconfig', ({ body: { mac, os }}, res) => {
     // first, remove the old symlink
     fs.unlink(`${PXECFG}/${parsedMacAddress}`, err => {})
     // next, link the pxe file to the request OS recipe
-    fs.link(`${PXECFG}/${os}.cfg`, `${PXECFG}/${parsedMacAddress}`, err => {})
+    fs.symlink(`${PXECFG}/${os}.cfg`, `${PXECFG}/${parsedMacAddress}`, err => {})
 
     res.json({ status: 'success' })
     return
